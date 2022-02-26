@@ -1,0 +1,37 @@
+--IR code
+
+#define motor 7
+#define buzzer 6
+int val=0;
+int ir=0;
+void setup()
+{
+Serial.begin (9600); 
+pinMode(motor, OUTPUT);
+pinMode(buzzer,OUTPUT);
+pinMode(ir,INPUT);
+
+}
+
+void loop()
+{
+unsigned long duration;
+unsigned ir_distance=pow(3027.4/analogRead(A0),1.2134);
+
+
+
+
+if(ir_distance>70)
+{
+tone(3,500); 
+digitalWrite(motor,HIGH); // When the the distance below 100cm
+digitalWrite(buzzer,HIGH);
+}
+else
+{
+digitalWrite(motor,LOW);// when greater than 100cm
+digitalWrite(buzzer,LOW);
+}
+delay(500);
+
+}
